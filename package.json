@@ -1,0 +1,13 @@
+{
+  "name": "boerja-programmera-igen",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "browser": "src/js/index.js",
+  "scripts": {
+    "dev": "vite"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
