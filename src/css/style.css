@@ -1,0 +1,9 @@
+body {
+	background: #ffffff;
+	font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+	text-align: center;
+}
+#username-app-container {
+	width: max-content;
+	margin: auto;
+}

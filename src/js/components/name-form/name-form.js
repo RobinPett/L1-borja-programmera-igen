@@ -10,17 +10,17 @@ const template = document.createElement('template')
 template.innerHTML = `
 <style>
   #name {
-
+  
   }
 </style>
-<h4>Enter usernayour name</h4>
+<h4>Enter your name</h4>
   <form>
     <input type="text" id="name" placeholder="Enter your name...">
     <button type="submit" id="button" value="Submit">Submit</button>
   </form>
 `
 
-customElements.define('name',
+customElements.define('name-form',
   /**
    * Represents a name-form element.
    */
