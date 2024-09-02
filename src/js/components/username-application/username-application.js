@@ -107,7 +107,6 @@ customElements.define('username-application',
       }
 
       const wordArray = await response.json()
-      // console.log(wordArray)
 
       this.handleWords(wordArray)
     }
@@ -119,15 +118,26 @@ customElements.define('username-application',
         allWords.push(word)
       });
 
-      allWords.forEach(word => {
-        console.log(word)
-      });
-
       this.extractWords(allWords)
     }
 
     extractWords(wordArray) {
       // Set rules for how long a word can be. Collect 5 words to build 5 usernames with.
+      const chosenWords = []
+
+      for (let i = 0; i < wordArray.length; i++) {
+        const word = wordArray[i];
+
+        if (chosenWords.length < 5) {
+          if (word.length <= 5) {
+            chosenWords.push(word)
+          }
+        }
+      }
+
+      chosenWords.forEach(word => {
+        console.log(word)
+      });
     }
 
     /**
