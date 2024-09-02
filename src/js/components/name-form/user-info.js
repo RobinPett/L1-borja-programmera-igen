@@ -13,16 +13,17 @@ template.innerHTML = `
   
   }
 </style>
-<h4>Enter your name</h4>
+<h4>Enter your information</h4>
   <form>
     <input type="text" id="name" placeholder="Enter your name...">
+    <input type="text" id="interest" placeholder="Enter an interest...">
     <button type="submit" id="button" value="Submit">Submit</button>
   </form>
 `
 
-customElements.define('name-form',
+customElements.define('user-info',
   /**
-   * Represents a name-form element.
+   * Represents a user-info element.
    */
   class extends HTMLElement {
     /**
@@ -40,6 +41,13 @@ customElements.define('name-form',
     #name
 
     /**
+     * The input element for name.
+     *
+     * @type {HTMLInputElement}
+     */
+    #interest
+
+    /**
      * Creates an instance of the current type.
      */
     constructor () {
@@ -53,9 +61,10 @@ customElements.define('name-form',
       // Get the elements in the shadow root.
       this.#form = this.shadowRoot.querySelector('form')
       this.#name = this.shadowRoot.querySelector('#name')
+      this.#interest = this.shadowRoot.querySelector('#interest')
 
       // Listen for form submit
-      this.#form.addEventListener('submit', (event) => this.sendUsername(event))
+      this.#form.addEventListener('submit', (event) => this.sendUserInfo(event))
     }
 
     /**
@@ -63,16 +72,17 @@ customElements.define('name-form',
      *
      * @param {Event} event - Submit event with username details.
      */
-    sendUsername (event) {
+    sendUserInfo (event) {
       event.preventDefault()
       const name = this.#name.value
+      const interest = this.#interest.value
 
       // Check if username is empty
       if (name === '') {
         alert('Enter a name')
       } else {
-        const nameEvent = new window.CustomEvent('name', { detail: name })
-        this.dispatchEvent(nameEvent)
+        const userInfoEvent = new window.CustomEvent('user-info', { detail: { name, interest } })
+        this.dispatchEvent(userInfoEvent)
       }
     }
   }

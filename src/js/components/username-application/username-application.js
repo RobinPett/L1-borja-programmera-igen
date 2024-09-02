@@ -19,7 +19,7 @@ template.innerHTML = `
     }
   </style>
   <div class="username-application">
-   <name-form></name-form>
+   <user-info></user-info>
    <h1>username app</h1>
   </div>
 `
@@ -37,11 +37,11 @@ customElements.define('username-application',
     #usernameApplication
 
     /**
-     * The name-form element.
+     * The user-info element.
      *
      * @type {HTMLElement}
      */
-    #nameForm
+    #userInfoForm
 
     /**
      * The name of user.
@@ -68,10 +68,10 @@ customElements.define('username-application',
 
       // Get the elements in the shadow root.
       this.#usernameApplication = this.shadowRoot.querySelector('.username-application')
-      this.#nameForm = this.shadowRoot.querySelector('name-form')
+      this.#userInfoForm = this.shadowRoot.querySelector('user-info')
 
       // When a user has submitted a name, start a timer and get the first question - run once
-      this.#nameForm.addEventListener('name', (event) => { this.startQuiz(event) }, { once: true })
+      this.#userInfoForm.addEventListener('user-info', (event) => { this.handleResponse(event.detail) }, { once: true })
 
       // When user has answered, get users answer and fetch correct answer from server
       // Fetch next question if correct, Else - display the scoreboard
@@ -83,6 +83,18 @@ customElements.define('username-application',
      * Called after the element has been removed from the DOM.
      */
     disconnectedCallback() {
+    }
+
+    /**
+     * Called after the element has been removed from the DOM.
+     */
+    handleResponse(detail) {
+      const name = detail.name
+      const interst = detail.interest
+
+      console.log(name, interst)
+
+      
     }
 
     /**

@@ -1,1 +1,1 @@
-import './name-form.js'
+import './user-info.js'
