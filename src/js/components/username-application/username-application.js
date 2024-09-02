@@ -90,11 +90,44 @@ customElements.define('username-application',
      */
     handleResponse(detail) {
       const name = detail.name
-      const interst = detail.interest
+      const interest = detail.interest
 
-      console.log(name, interst)
+      console.log(name, interest)
 
-      
+      this.findWords(interest)
+    }
+
+    async findWords(interest) {
+      const wordAPI = 'https://api.datamuse.com/words?ml='
+
+      let response = await fetch(wordAPI + interest)
+
+      if (!response.ok) {
+        console.error(response.status)
+      }
+
+      const wordArray = await response.json()
+      // console.log(wordArray)
+
+      this.handleWords(wordArray)
+    }
+
+    handleWords(wordArray) {
+      const allWords = []
+      wordArray.forEach(element => {
+        const word = element.word
+        allWords.push(word)
+      });
+
+      allWords.forEach(word => {
+        console.log(word)
+      });
+
+      this.extractWords(allWords)
+    }
+
+    extractWords(wordArray) {
+      // Set rules for how long a word can be. Collect 5 words to build 5 usernames with.
     }
 
     /**
