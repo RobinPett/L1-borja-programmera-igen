@@ -56,6 +56,12 @@ customElements.define('username-application',
     #interest
 
     /**
+     * The interest of user.
+     *
+     */
+    #words
+
+    /**
      * Creates an instance of the current type.
      */
     constructor() {
@@ -91,6 +97,8 @@ customElements.define('username-application',
     handleResponse(detail) {
       const name = detail.name
       const interest = detail.interest
+
+      this.#name = name
 
       console.log(name, interest)
 
@@ -135,8 +143,22 @@ customElements.define('username-application',
         }
       }
 
-      chosenWords.forEach(word => {
-        console.log(word)
+      this.#words = chosenWords
+
+      this.buildUsername()
+    }
+
+    buildUsername() {
+      const newUsernames = []
+
+      this.#words.forEach(word => {
+        const generatedUsername = this.#name + word
+
+        newUsernames.push(generatedUsername)
+      });
+
+      newUsernames.forEach(username => {
+        console.log(username)
       });
     }
 
