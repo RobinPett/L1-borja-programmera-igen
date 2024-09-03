@@ -173,7 +173,23 @@ customElements.define('username-application',
 
       newUsernames.forEach(username => {
         const newUsernameElement = document.createElement('li')
-        newUsernameElement.textContent = username
+
+        const usernameText = document.createElement('span')
+        usernameText.textContent = username
+        const copyButton = document.createElement('button')
+        copyButton.textContent = 'Copy'
+
+        copyButton.addEventListener('click', () => {
+          navigator.clipboard.writeText(username).then(() => {
+            copyButton.textContent = 'Copied!'
+            setTimeout(() => copyButton.textContent = 'Copy', 2000)
+          }).catch(err => {
+            console.error('Failed to copy: ' + err)
+          })
+        })
+
+        newUsernameElement.appendChild(usernameText)
+        newUsernameElement.appendChild(copyButton)
         newUsernameList.appendChild(newUsernameElement)
       })
 
