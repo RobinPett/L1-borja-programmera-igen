@@ -21,6 +21,8 @@ template.innerHTML = `
   <div class="username-application">
    <user-info></user-info>
    <h1>username app</h1>
+   <div id="generated-usernames-container"> 
+   </div>
   </div>
 `
 
@@ -50,10 +52,10 @@ customElements.define('username-application',
     #name
 
     /**
-     * The interest of user.
+     * Generated usernames
      *
      */
-    #interest
+    #generatedUsernamesContainer
 
     /**
      * The interest of user.
@@ -75,9 +77,10 @@ customElements.define('username-application',
       // Get the elements in the shadow root.
       this.#usernameApplication = this.shadowRoot.querySelector('.username-application')
       this.#userInfoForm = this.shadowRoot.querySelector('user-info')
+      this.#generatedUsernamesContainer = this.shadowRoot.querySelector('#generated-usernames-container')
 
       // When a user has submitted a name, start a timer and get the first question - run once
-      this.#userInfoForm.addEventListener('user-info', (event) => { this.handleResponse(event.detail) }, { once: true })
+      this.#userInfoForm.addEventListener('user-info', (event) => { this.handleResponse(event.detail) }, { once: false })
 
       // When user has answered, get users answer and fetch correct answer from server
       // Fetch next question if correct, Else - display the scoreboard
@@ -166,9 +169,15 @@ customElements.define('username-application',
         newUsernames.push(generatedUsername)
       })
 
+      const newUsernameList = document.createElement('ul')
+
       newUsernames.forEach(username => {
-        console.log(username)
-      });
+        const newUsernameElement = document.createElement('li')
+        newUsernameElement.textContent = username
+        newUsernameList.appendChild(newUsernameElement)
+      })
+
+      this.#generatedUsernamesContainer.appendChild(newUsernameList)
     }
 
     /**
