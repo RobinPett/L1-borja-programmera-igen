@@ -151,11 +151,20 @@ customElements.define('username-application',
     buildUsername() {
       const newUsernames = []
 
-      this.#words.forEach(word => {
-        const generatedUsername = this.#name + word
+      this.#words.forEach((word, i) => {
+        let generatedUsername
+
+        if (i % 2) {
+          generatedUsername = this.#name + word
+        } else {
+          generatedUsername = word + this.#name
+        }
+
+
+        
 
         newUsernames.push(generatedUsername)
-      });
+      })
 
       newUsernames.forEach(username => {
         console.log(username)
