@@ -7,6 +7,8 @@
 
 import '../name-form/index.js'
 
+const copySymbol = '../../../img/copy_symbol.svg'
+
 // Define template.
 const template = document.createElement('template')
 template.innerHTML = `
@@ -17,6 +19,52 @@ template.innerHTML = `
       background-color: white;
       padding: 1em;
     }
+
+  .copy-button {
+	background-color: white;
+	border: none;
+	color: black;
+  border-radius: 15px;
+	padding: 5px 8px;
+	text-align: center;
+	text-decoration: none;
+	font-size: 10px;
+  filter: drop-shadow(0 0 0.5px black);
+  transition: background-color 1s;
+  transition: color 1s;
+  cursor: pointer;
+  margin-right: 15px;
+}
+
+  .copy-button:hover {
+    background-color: #1B8EF2;
+    transition: background-color 1s;
+    scale: 110%;
+  }
+
+    button:active {
+    background-color: #1B8EF2;
+    transition: background-color 1s;
+  }
+
+  .copy-button {
+    width: 15px;
+    height: auto;
+
+  }
+
+  ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  li {
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+  }
+
   </style>
   <div class="username-application">
    <user-info></user-info>
@@ -152,32 +200,32 @@ customElements.define('username-application',
     }
 
     buildUsername() {
+      // Array for new usernames
       const newUsernames = []
 
+      // Loop throgh word array and build usernames with name and word
       this.#words.forEach((word, i) => {
         let generatedUsername
 
+        // Change order of word + name based on index - Every other
         if (i % 2) {
           generatedUsername = this.#name + word
         } else {
           generatedUsername = word + this.#name
         }
-
-
-        
-
         newUsernames.push(generatedUsername)
       })
 
       const newUsernameList = document.createElement('ul')
-
       newUsernames.forEach(username => {
         const newUsernameElement = document.createElement('li')
 
+        const copyButton = document.createElement('input')
+        copyButton.setAttribute('type', 'image')
+        copyButton.setAttribute('src', '../img/copy_symbol.svg')
+        copyButton.setAttribute('class', 'copy-button')
         const usernameText = document.createElement('span')
         usernameText.textContent = username
-        const copyButton = document.createElement('button')
-        copyButton.textContent = 'Copy'
 
         copyButton.addEventListener('click', () => {
           navigator.clipboard.writeText(username).then(() => {
@@ -188,8 +236,8 @@ customElements.define('username-application',
           })
         })
 
-        newUsernameElement.appendChild(usernameText)
         newUsernameElement.appendChild(copyButton)
+        newUsernameElement.appendChild(usernameText)
         newUsernameList.appendChild(newUsernameElement)
       })
 
