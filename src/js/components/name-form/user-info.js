@@ -9,15 +9,54 @@
 const template = document.createElement('template')
 template.innerHTML = `
 <style>
-  #name {
-  
+  input {
+    border-radius: 15px; 
+    padding: 12px;
+    border: 1.5px solid lightgrey;
+    outline: none;
+    box-shadow: 0px 0px 20px -18px;
+    margin: 0.75rem 0 1rem 0;
   }
+
+  label {
+    text-align: left;
+    font-size: 15px;
+    font-weight: 100;
+  }
+
+  form {
+  display: flex;
+  flex-direction: column;
+  }
+
+  button {
+    background-color: white;
+    border: 1px solid lightgrey;
+    border-radius: 8px;
+    box-shadow: 0px 0px 20px -18px;
+    cursor: pointer;
+    padding: 10px;
+    transition: 0.5s;
+    width: max-content;
+    margin: auto;
+    margin-top: 0.5rem;
+  }
+
+  button:hover {
+    scale: 110%;
+    background-color: black; 
+    color: white;
+  }
+
 </style>
-<h4>Enter your information</h4>
+
+
   <form>
+    <label for="name">Name</label>
     <input type="text" id="name" placeholder="Enter your name...">
+    <label for="interest">Interest</label>
     <input type="text" id="interest" placeholder="Enter an interest...">
-    <button type="submit" id="button" value="Submit">Submit</button>
+    <button type="submit" id="button" value="Submit">Generate username</button>
   </form>
 `
 

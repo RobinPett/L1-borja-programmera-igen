@@ -68,7 +68,6 @@ template.innerHTML = `
   </style>
   <div class="username-application">
    <user-info></user-info>
-   <h1>username app</h1>
    <div id="generated-usernames-container"> 
    </div>
   </div>
