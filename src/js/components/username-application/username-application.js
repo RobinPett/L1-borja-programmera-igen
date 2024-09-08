@@ -6,6 +6,7 @@
  */
 
 import '../name-form/index.js'
+import '../username-list/username-list.js'
 
 const copySymbol = '../../../img/copy_symbol.svg'
 
@@ -18,6 +19,10 @@ template.innerHTML = `
       color: black;
       background-color: white;
       padding: 1em;
+    }
+
+    #generated-usernames-container {
+      margin-top: 2rem;
     }
 
   .copy-button {
@@ -66,11 +71,11 @@ template.innerHTML = `
   }
 
   </style>
-  <div class="username-application">
-   <user-info></user-info>
-   <div id="generated-usernames-container"> 
-   </div>
-  </div>
+    <div class="username-application">
+      <user-info></user-info>
+      <div id="generated-usernames-container"> 
+      </div>
+    </div>
 `
 
 customElements.define('username-application',
@@ -109,6 +114,12 @@ customElements.define('username-application',
      *
      */
     #words
+
+    /**
+     * The interest of user.
+     *
+     */
+    #usernameListElement
 
     /**
      * Creates an instance of the current type.
@@ -166,81 +177,13 @@ customElements.define('username-application',
 
       const wordArray = await response.json()
 
-      this.handleWords(wordArray)
-    }
+      console.log(this.#words)
 
-    handleWords(wordArray) {
-      const allWords = []
-      wordArray.forEach(element => {
-        const word = element.word
-        allWords.push(word)
-      });
+      const data = { name: this.#name, words: wordArray }
+      this.#usernameListElement = document.createElement('username-list')
+      this.#usernameListElement.elementData(data)
 
-      this.extractWords(allWords)
-    }
-
-    extractWords(wordArray) {
-      // Set rules for how long a word can be. Collect 5 words to build 5 usernames with.
-      const chosenWords = []
-
-      for (let i = 0; i < wordArray.length; i++) {
-        const word = wordArray[i];
-
-        if (chosenWords.length < 5) {
-          if (word.length <= 5) {
-            chosenWords.push(word)
-          }
-        }
-      }
-
-      this.#words = chosenWords
-
-      this.buildUsername()
-    }
-
-    buildUsername() {
-      // Array for new usernames
-      const newUsernames = []
-
-      // Loop throgh word array and build usernames with name and word
-      this.#words.forEach((word, i) => {
-        let generatedUsername
-
-        // Change order of word + name based on index - Every other
-        if (i % 2) {
-          generatedUsername = this.#name + word
-        } else {
-          generatedUsername = word + this.#name
-        }
-        newUsernames.push(generatedUsername)
-      })
-
-      const newUsernameList = document.createElement('ul')
-      newUsernames.forEach(username => {
-        const newUsernameElement = document.createElement('li')
-
-        const copyButton = document.createElement('input')
-        copyButton.setAttribute('type', 'image')
-        copyButton.setAttribute('src', '../img/copy_symbol.svg')
-        copyButton.setAttribute('class', 'copy-button')
-        const usernameText = document.createElement('span')
-        usernameText.textContent = username
-
-        copyButton.addEventListener('click', () => {
-          navigator.clipboard.writeText(username).then(() => {
-            copyButton.textContent = 'Copied!'
-            setTimeout(() => copyButton.textContent = 'Copy', 2000)
-          }).catch(err => {
-            console.error('Failed to copy: ' + err)
-          })
-        })
-
-        newUsernameElement.appendChild(copyButton)
-        newUsernameElement.appendChild(usernameText)
-        newUsernameList.appendChild(newUsernameElement)
-      })
-
-      this.#generatedUsernamesContainer.appendChild(newUsernameList)
+      this.#usernameApplication.appendChild(this.#usernameListElement)
     }
 
     /**
