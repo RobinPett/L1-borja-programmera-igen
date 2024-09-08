@@ -87,6 +87,13 @@ customElements.define('user-info',
     #interest
 
     /**
+     * The input element for name.
+     *
+     * @type {HTMLInputElement}
+     */
+    #button
+
+    /**
      * Creates an instance of the current type.
      */
     constructor () {
@@ -101,6 +108,7 @@ customElements.define('user-info',
       this.#form = this.shadowRoot.querySelector('form')
       this.#name = this.shadowRoot.querySelector('#name')
       this.#interest = this.shadowRoot.querySelector('#interest')
+      this.#button = this.shadowRoot.querySelector('button')
 
       // Listen for form submit
       this.#form.addEventListener('submit', (event) => this.sendUserInfo(event))
@@ -115,6 +123,9 @@ customElements.define('user-info',
       event.preventDefault()
       const name = this.#name.value
       const interest = this.#interest.value
+
+      // Change button text
+      this.#button.textContent = 'Generate again'
 
       // Check if username is empty
       if (name === '') {

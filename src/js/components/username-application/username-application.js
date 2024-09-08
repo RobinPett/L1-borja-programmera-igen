@@ -161,8 +161,6 @@ customElements.define('username-application',
 
       this.#name = name
 
-      console.log(name, interest)
-
       this.findWords(interest)
     }
 
@@ -180,9 +178,16 @@ customElements.define('username-application',
       console.log(this.#words)
 
       const data = { name: this.#name, words: wordArray }
+
+      // Check if list already exists
+      if (this.#usernameListElement) {
+        this.#usernameListElement.remove()
+      }
+
       this.#usernameListElement = document.createElement('username-list')
       this.#usernameListElement.elementData(data)
 
+      
       this.#usernameApplication.appendChild(this.#usernameListElement)
     }
 
