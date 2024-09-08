@@ -51,6 +51,7 @@ template.innerHTML = `
 
 </style>
     <hr>
+    <p>Username suggestions</p>
    <div id="generated-usernames-container"> 
    </div>
 `
@@ -117,11 +118,13 @@ customElements.define('username-list',
     }
 
     extractWords(allWords) {
+
       // Set rules for how long a word can be. Collect 5 words to build 5 usernames with.
       const chosenWords = []
 
       for (let i = 0; i < allWords.length; i++) {
-        const word = allWords[i];
+        const randomIndex = this.generateRandomNumber(allWords.length)
+        const word = allWords[randomIndex]
 
         if (chosenWords.length < 5) {
           if (word.length <= 5) {
@@ -141,8 +144,10 @@ customElements.define('username-list',
       chosenWords.forEach((word, i) => {
         let generatedUsername
 
+        const randomValue = this.generateRandomNumber(2)
+
         // Change order of word + name based on index - Every other
-        if (i % 2) {
+        if (randomValue % 2) {
           generatedUsername = this.#name + word
         } else {
           generatedUsername = word + this.#name
@@ -176,6 +181,10 @@ customElements.define('username-list',
       })
 
       this.#generatedUsernamesContainer.appendChild(newUsernameList)
+    }
+
+    generateRandomNumber(max) {
+      return Math.floor(Math.random() * max)
     }
   }
 )
