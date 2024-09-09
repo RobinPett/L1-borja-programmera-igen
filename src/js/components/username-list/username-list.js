@@ -5,6 +5,9 @@
  * @version 1.0.0
  */
 
+const copySymbolUrl = '/img/copy-symbol.svg'
+const hyperlinkSymbolUrl = '/img/hyperlink-icon.svg'
+
 // Define template.
 const template = document.createElement('template')
 template.innerHTML = `
@@ -188,15 +191,15 @@ customElements.define('username-list',
 
           const copyButton = document.createElement('input')
           copyButton.setAttribute('type', 'image')
-          copyButton.setAttribute('src', '/img/copy_symbol.svg')
+          copyButton.setAttribute('src', copySymbolUrl)
           copyButton.setAttribute('class', 'copy-button')
           const usernameText = document.createElement('span')
           usernameText.textContent = username
 
           copyButton.addEventListener('click', () => {
             navigator.clipboard.writeText(username).then(() => {
-              copyButton.setAttribute('src', '/img/hyperlink-icon.svg')
-              setTimeout(() => copyButton.setAttribute('src', '/img/copy_symbol.svg'), 500)
+              copyButton.setAttribute('src', hyperlinkSymbolUrl)
+              setTimeout(() => copyButton.setAttribute('src', copySymbolUrl), 500)
             }).catch(err => {
               console.error('Failed to copy: ' + err)
             })
