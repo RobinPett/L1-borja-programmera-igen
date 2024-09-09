@@ -8,7 +8,7 @@
 import '../name-form/index.js'
 import '../username-list/username-list.js'
 
-const copySymbol = '../../../img/copy_symbol.svg'
+const copySymbol = '/img/copy_symbol.svg'
 
 // Define template.
 const template = document.createElement('template')

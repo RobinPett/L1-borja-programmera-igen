@@ -69,7 +69,7 @@ template.innerHTML = `
     margin-bottom: 10px;
     display: flex;
     align-items: center;
-    font-size: 1.5rem;
+    font-size: 1rem;
     color: #F2F2F2;
     text-align: center;
   }
@@ -195,7 +195,7 @@ customElements.define('username-list',
 
           copyButton.addEventListener('click', () => {
             navigator.clipboard.writeText(username).then(() => {
-              copyButton.setAttribute('src', '../img/hyperlink-icon.svg')
+              copyButton.setAttribute('src', '/img/hyperlink-icon.svg')
               setTimeout(() => copyButton.setAttribute('src', '../img/copy_symbol.svg'), 500)
             }).catch(err => {
               console.error('Failed to copy: ' + err)
