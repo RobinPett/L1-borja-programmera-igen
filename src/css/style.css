@@ -22,13 +22,14 @@ body {
 	justify-content: center;
 	margin-top: 10rem;
 	border: 1px solid rgba(255, 255, 255, 0.46);
-	box-shadow: 1rem 1rem 1rem 1rem rgba(0, 0, 0, 0.495);
+	box-shadow: 1rem 1rem 2rem 1rem rgba(0, 0, 0, 0.495);
 	transition: all 0.5s;
 }
 
 .username-app-container:hover {
 	backdrop-filter: blur(10px);
-	background-color: rgba(0, 0, 0, 0.3);
+	background-color: rgba(23, 23, 23, 0.3);
+	box-shadow: 1rem 1rem 5rem 1rem rgba(0, 0, 0, 0.5);;
 }
 
 #inside {

@@ -36,7 +36,7 @@ template.innerHTML = `
   }
 
   button {
-    background-color: white;
+    background-color: #F2F2F2;
     border: 1px solid lightgrey;
     border-radius: 8px;
     box-shadow: 0px 0px 20px -18px;
@@ -45,12 +45,12 @@ template.innerHTML = `
     transition: 0.5s;
     width: max-content;
     margin: auto;
-    margin-top: 0.5rem;
+    margin-top: 1.2rem;
   }
 
   button:hover {
     scale: 110%;
-    background-color: black; 
+    background-color: #0D0D0D; 
     color: white;
   }
 
@@ -133,10 +133,17 @@ customElements.define('user-info',
       // Change button text
       this.#button.textContent = 'Generate again'
 
+      const redErrorColor = 'rgba(107, 15, 26, 0.5)'
+
       // Check if username is empty
       if (name === '') {
-        alert('Enter a name')
-      } else {
+        this.#name.style.backgroundColor = redErrorColor
+      } 
+      
+      if (interest === '') {
+        this.#interest.style.backgroundColor = redErrorColor
+      } 
+      if (!(name === ''  || interest === '')) {
         const userInfoEvent = new window.CustomEvent('user-info', { detail: { name, interest } })
         this.dispatchEvent(userInfoEvent)
       }

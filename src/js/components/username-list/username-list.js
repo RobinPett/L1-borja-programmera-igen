@@ -11,7 +11,7 @@ template.innerHTML = `
 <style>
 
   .copy-button {
-	  background-color: white;
+	  background-color: none;
 	  border: none;
 	  color: black;
     border-radius: 15px;
@@ -24,12 +24,15 @@ template.innerHTML = `
     transition: color 1s;
     cursor: pointer;
     margin-right: 15px;
+    filter: opacity(20%;)
+	  border-radius: 1rem;
+    border: 1px solid rgba(0, 0, 0, 0.46);
   }
 
   .copy-button:hover {
-    background-color: #ADD8E6;
     transition: background-color 1s;
     scale: 110%;
+    filter: invert(100%);
   }
 
   .copy-button:active {
@@ -43,16 +46,32 @@ template.innerHTML = `
     height: auto;
   }
 
+ 
+  .copy-button {
+    filter: invert(50%);
+  }
+
   ul {
     list-style-type: none;
     padding: 0;
     margin: 0;
+    align-items: center;
+    display: inline-block;
+    text-align: left;
   }
+
+  #generated-usernames-container {
+    text-align: center;
+  }
+
 
   li {
     margin-bottom: 10px;
     display: flex;
     align-items: center;
+    font-size: 1.5rem;
+    color: #F2F2F2;
+    text-align: center;
   }
 
 </style>
@@ -86,12 +105,12 @@ customElements.define('username-list',
      */
     #generatedUsernamesContainer
 
-    
+
 
     /**
      * Creates an instance of the current type.
      */
-    constructor () {
+    constructor() {
       super()
 
       // Attach a shadow DOM tree to this element and
@@ -163,17 +182,17 @@ customElements.define('username-list',
 
       const newUsernameList = document.createElement('ul')
 
-      if (newUsernames.length >= 1 ) {
+      if (newUsernames.length >= 1) {
         newUsernames.forEach(username => {
           const newUsernameElement = document.createElement('li')
-  
+
           const copyButton = document.createElement('input')
           copyButton.setAttribute('type', 'image')
           copyButton.setAttribute('src', '../img/copy_symbol.svg')
           copyButton.setAttribute('class', 'copy-button')
           const usernameText = document.createElement('span')
           usernameText.textContent = username
-  
+
           copyButton.addEventListener('click', () => {
             navigator.clipboard.writeText(username).then(() => {
               copyButton.setAttribute('src', '../img/hyperlink-icon.svg')
@@ -182,7 +201,7 @@ customElements.define('username-list',
               console.error('Failed to copy: ' + err)
             })
           })
-  
+
           newUsernameElement.appendChild(copyButton)
           newUsernameElement.appendChild(usernameText)
           newUsernameList.appendChild(newUsernameElement)
@@ -192,7 +211,7 @@ customElements.define('username-list',
         noNamesMessage.textContent = 'No words could be found to build with, try again!'
         newUsernameList.appendChild(noNamesMessage)
       }
-      
+
 
       this.#generatedUsernamesContainer.appendChild(newUsernameList)
     }

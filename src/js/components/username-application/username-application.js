@@ -31,6 +31,16 @@ template.innerHTML = `
     margin: 1.5em;
     }
 
+    #info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: 1.5em;
+    font-weight: 100;
+    opacity: 30%;
+    }
+
     #userform {
     margin-top: 2em;
     padding: 1em;
@@ -46,6 +56,7 @@ template.innerHTML = `
       <user-info id="userform"></user-info>
       <div id="generated-usernames-container"> 
       </div>
+      <p id="info">© Robin Pettersson</p>
     </div>
 `
 
