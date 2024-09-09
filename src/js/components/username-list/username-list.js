@@ -5,8 +5,8 @@
  * @version 1.0.0
  */
 
-const copySymbol = 'https://i.ibb.co/LpbHnK9/copy-symbol.png'
-const hyperlinkSymbol = 'https://i.ibb.co/bHt9czX/hyperlink-icon.png'
+const copySymbol = 'https://i.ibb.co/svDQrPN/copy-symbol.png'
+const hyperlinkSymbol = 'https://i.ibb.co/Q6ZMBRV/hyperlink-icon.png'
 
 // Define template.
 const template = document.createElement('template')
