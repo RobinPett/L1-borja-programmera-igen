@@ -5,6 +5,9 @@
  * @version 1.0.0
  */
 
+const copySymbol = 'https://i.ibb.co/LpbHnK9/copy-symbol.png'
+const hyperlinkSymbol = 'https://i.ibb.co/bHt9czX/hyperlink-icon.png'
+
 // Define template.
 const template = document.createElement('template')
 template.innerHTML = `
@@ -188,15 +191,15 @@ customElements.define('username-list',
 
           const copyButton = document.createElement('input')
           copyButton.setAttribute('type', 'image')
-          copyButton.setAttribute('src', '/copy_symbol.png')
+          copyButton.setAttribute('src', copySymbol)
           copyButton.setAttribute('class', 'copy-button')
           const usernameText = document.createElement('span')
           usernameText.textContent = username
 
           copyButton.addEventListener('click', () => {
             navigator.clipboard.writeText(username).then(() => {
-              copyButton.setAttribute('src', '/hyperlink-icon.png')
-              setTimeout(() => copyButton.setAttribute('src', '/copy_symbol.png'), 500)
+              copyButton.setAttribute('src', hyperlinkSymbol)
+              setTimeout(() => copyButton.setAttribute('src', copySymbol), 500)
             }).catch(err => {
               console.error('Failed to copy: ' + err)
             })
