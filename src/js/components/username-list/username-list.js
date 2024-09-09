@@ -162,29 +162,37 @@ customElements.define('username-list',
       })
 
       const newUsernameList = document.createElement('ul')
-      newUsernames.forEach(username => {
-        const newUsernameElement = document.createElement('li')
 
-        const copyButton = document.createElement('input')
-        copyButton.setAttribute('type', 'image')
-        copyButton.setAttribute('src', '../img/copy_symbol.svg')
-        copyButton.setAttribute('class', 'copy-button')
-        const usernameText = document.createElement('span')
-        usernameText.textContent = username
-
-        copyButton.addEventListener('click', () => {
-          navigator.clipboard.writeText(username).then(() => {
-            copyButton.setAttribute('src', '../img/hyperlink-icon.svg')
-            setTimeout(() => copyButton.setAttribute('src', '../img/copy_symbol.svg'), 500)
-          }).catch(err => {
-            console.error('Failed to copy: ' + err)
+      if (newUsernames.length >= 1 ) {
+        newUsernames.forEach(username => {
+          const newUsernameElement = document.createElement('li')
+  
+          const copyButton = document.createElement('input')
+          copyButton.setAttribute('type', 'image')
+          copyButton.setAttribute('src', '../img/copy_symbol.svg')
+          copyButton.setAttribute('class', 'copy-button')
+          const usernameText = document.createElement('span')
+          usernameText.textContent = username
+  
+          copyButton.addEventListener('click', () => {
+            navigator.clipboard.writeText(username).then(() => {
+              copyButton.setAttribute('src', '../img/hyperlink-icon.svg')
+              setTimeout(() => copyButton.setAttribute('src', '../img/copy_symbol.svg'), 500)
+            }).catch(err => {
+              console.error('Failed to copy: ' + err)
+            })
           })
+  
+          newUsernameElement.appendChild(copyButton)
+          newUsernameElement.appendChild(usernameText)
+          newUsernameList.appendChild(newUsernameElement)
         })
-
-        newUsernameElement.appendChild(copyButton)
-        newUsernameElement.appendChild(usernameText)
-        newUsernameList.appendChild(newUsernameElement)
-      })
+      } else {
+        const noNamesMessage = document.createElement('li')
+        noNamesMessage.textContent = 'No words could be found to build with, try again!'
+        newUsernameList.appendChild(noNamesMessage)
+      }
+      
 
       this.#generatedUsernamesContainer.appendChild(newUsernameList)
     }
