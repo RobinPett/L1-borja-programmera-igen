@@ -1,9 +1,41 @@
 body {
-	background: #ffffff;
+	background-image: linear-gradient(to right, #d1d1d1, #cfd1d6, #c9d3db, #c1d5de, #b8d8dc);
+	background-image: url('../img/dark.jpg');
+	background-size: cover;
 	font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 	text-align: center;
-}
-#username-app-container {
-	width: max-content;
+	font-weight: lighter;
 	margin: auto;
+	align-items: center;
+	justify-content: center;
+}
+
+.username-app-container {
+	display: flex;
+	background-color: rgba(50, 50, 50, 0.3);
+	backdrop-filter: blur(10px);
+	border-radius: 1rem;
+	width: min-content;
+	height: auto;
+	margin: auto;
+	align-items: center;
+	justify-content: center;
+	margin-top: 10rem;
+	border: 1px solid rgba(255, 255, 255, 0.46);
+	box-shadow: 1rem 1rem 1rem 1rem rgba(0, 0, 0, 0.495);
+	transition: all 0.5s;
+}
+
+.username-app-container:hover {
+	backdrop-filter: blur(10px);
+	background-color: rgba(0, 0, 0, 0.3);
+}
+
+#inside {
+	display: flex;
+	flex-direction: column;
+	margin: auto; 
+	align-items: center;
+	justify-content: center;
+	padding: 5em;
 }

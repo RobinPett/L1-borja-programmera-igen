@@ -15,64 +15,35 @@ const template = document.createElement('template')
 template.innerHTML = `
   <style>
     .username-application {
-      font-size: 1.2em;
-      color: black;
-      background-color: white;
+      font-size: 1em;
+      font-weight: lighter;
+      color: white;
       padding: 1em;
+      border-radius: 1rem;
+      width: 100%;
+    }
+
+    #title {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    margin: 1.5em;
+    }
+
+    #userform {
+    margin-top: 2em;
+    padding: 1em;
     }
 
     #generated-usernames-container {
-      margin-top: 2rem;
+      margin-top: 2em;
     }
-
-  .copy-button {
-	background-color: white;
-	border: none;
-	color: black;
-  border-radius: 15px;
-	padding: 5px 8px;
-	text-align: center;
-	text-decoration: none;
-	font-size: 10px;
-  filter: drop-shadow(0 0 0.5px black);
-  transition: background-color 1s;
-  transition: color 1s;
-  cursor: pointer;
-  margin-right: 15px;
-}
-
-  .copy-button:hover {
-    background-color: #1B8EF2;
-    transition: background-color 1s;
-    scale: 110%;
-  }
-
-    button:active {
-    background-color: #1B8EF2;
-    transition: background-color 1s;
-  }
-
-  .copy-button {
-    width: 15px;
-    height: auto;
-
-  }
-
-  ul {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-  }
-
-  li {
-    margin-bottom: 10px;
-    display: flex;
-    align-items: center;
-  }
 
   </style>
     <div class="username-application">
-      <user-info></user-info>
+        <h2 id="title">Username Generator</h2>
+      <user-info id="userform"></user-info>
       <div id="generated-usernames-container"> 
       </div>
     </div>

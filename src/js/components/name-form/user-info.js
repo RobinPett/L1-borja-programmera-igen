@@ -16,6 +16,12 @@ template.innerHTML = `
     outline: none;
     box-shadow: 0px 0px 20px -18px;
     margin: 0.75rem 0 1rem 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+  }
+
+  ::placeholder {
+  color: gray;
   }
 
   label {
