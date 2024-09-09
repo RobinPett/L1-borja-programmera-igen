@@ -188,7 +188,7 @@ customElements.define('username-list',
 
           const copyButton = document.createElement('input')
           copyButton.setAttribute('type', 'image')
-          copyButton.setAttribute('src', '../img/copy_symbol.svg')
+          copyButton.setAttribute('src', '/img/copy_symbol.svg')
           copyButton.setAttribute('class', 'copy-button')
           const usernameText = document.createElement('span')
           usernameText.textContent = username
@@ -196,7 +196,7 @@ customElements.define('username-list',
           copyButton.addEventListener('click', () => {
             navigator.clipboard.writeText(username).then(() => {
               copyButton.setAttribute('src', '/img/hyperlink-icon.svg')
-              setTimeout(() => copyButton.setAttribute('src', '../img/copy_symbol.svg'), 500)
+              setTimeout(() => copyButton.setAttribute('src', '/img/copy_symbol.svg'), 500)
             }).catch(err => {
               console.error('Failed to copy: ' + err)
             })
