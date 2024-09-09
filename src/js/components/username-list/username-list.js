@@ -27,7 +27,13 @@ template.innerHTML = `
   }
 
   .copy-button:hover {
-    background-color: #1B8EF2;
+    background-color: #ADD8E6;
+    transition: background-color 1s;
+    scale: 110%;
+  }
+
+  .copy-button:active {
+    background-color: #red;
     transition: background-color 1s;
     scale: 110%;
   }
@@ -168,8 +174,8 @@ customElements.define('username-list',
 
         copyButton.addEventListener('click', () => {
           navigator.clipboard.writeText(username).then(() => {
-            copyButton.textContent = 'Copied!'
-            setTimeout(() => copyButton.textContent = 'Copy', 2000)
+            copyButton.setAttribute('src', '../img/hyperlink-icon.svg')
+            setTimeout(() => copyButton.setAttribute('src', '../img/copy_symbol.svg'), 500)
           }).catch(err => {
             console.error('Failed to copy: ' + err)
           })
