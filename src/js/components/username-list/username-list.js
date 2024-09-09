@@ -24,7 +24,7 @@ template.innerHTML = `
     transition: color 1s;
     cursor: pointer;
     margin-right: 15px;
-    filter: opacity(20%;)
+    filter: opacity(20%);
 	  border-radius: 1rem;
     border: 1px solid rgba(0, 0, 0, 0.46);
   }
@@ -188,15 +188,15 @@ customElements.define('username-list',
 
           const copyButton = document.createElement('input')
           copyButton.setAttribute('type', 'image')
-          copyButton.setAttribute('src', '/copy_symbol.svg')
+          copyButton.setAttribute('src', '/copy_symbol.png')
           copyButton.setAttribute('class', 'copy-button')
           const usernameText = document.createElement('span')
           usernameText.textContent = username
 
           copyButton.addEventListener('click', () => {
             navigator.clipboard.writeText(username).then(() => {
-              copyButton.setAttribute('src', '/hyperlink-icon.svg')
-              setTimeout(() => copyButton.setAttribute('src', '/copy_symbol.svg'), 500)
+              copyButton.setAttribute('src', '/hyperlink-icon.png')
+              setTimeout(() => copyButton.setAttribute('src', '/copy_symbol.png'), 500)
             }).catch(err => {
               console.error('Failed to copy: ' + err)
             })
